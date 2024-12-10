@@ -1,9 +1,10 @@
-import SearchBar from "../SearchBar/SearchBar";
+import { SearchBar, RestaurantsContainer } from '../index';
 
 const Body = () => {
     return (
         <>
             <SearchBar />
+            <RestaurantsContainer />
         </>
     );
 };

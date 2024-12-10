@@ -51,5 +51,8 @@ const MyForm = () => {
     );
 };
 
-## 📝 Notes
+## 💡 Notes
+ Styling: The component uses className to apply custom styles. You can use Tailwind CSS or other styling libraries with it.
+ Value Handling: The value prop is controlled by the parent component, making it easy to manage the form state.
+
 ```
