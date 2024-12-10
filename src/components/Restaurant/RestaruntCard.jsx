@@ -12,9 +12,17 @@ const RestaruntCard = ({ info }) => {
                         alt={`${name} Image`}
                         className="w-full h-full object-cover"
                     />
-                    <p className="absolute bottom-3 left-2 text-2xl text-white bg-green-500 font-extrabold p-1">
-                        {aggregatedDiscountInfoV3?.header && `${aggregatedDiscountInfoV3?.header} ${aggregatedDiscountInfoV3?.subHeader}`}
-                    </p>;
+
+                    <p
+                        className={`absolute bottom-3 left-2 text-2xl text-white font-extrabold p-1 ${aggregatedDiscountInfoV3?.header ? "bg-green-500" : ""}`}
+                    >
+                        {aggregatedDiscountInfoV3?.header &&
+                            `${aggregatedDiscountInfoV3?.header} ${aggregatedDiscountInfoV3?.subHeader}`}
+                    </p>
+
+
+
+
 
                 </div>
 
