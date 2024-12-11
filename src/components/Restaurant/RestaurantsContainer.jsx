@@ -41,9 +41,16 @@ const RestaurantsContainer = () => {
         console.log("ul", updatedRestList);
     };
 
+    const handleTopRatedClick = () => {
+        const updatedRestList = filteredrestaurantList.filter((res) => {
+            return res?.card?.card?.info?.avgRating > 4;
+        });
+        setRestaruntList(updatedRestList);
+    };
+
 
     return <section >
-        <Filter handleClick={handleVegOnlyRestarunt} />
+        <Filter handleVegClick={handleVegOnlyRestarunt} handleTopRatedClick={handleTopRatedClick} />
         <div className="flex justify-center flex-wrap gap-6 my-10">
             {restaurantList.map((res) => (
                 res?.card?.card?.info && <RestaruntCard
