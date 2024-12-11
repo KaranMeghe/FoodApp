@@ -5,4 +5,6 @@ import Input from './Input/Input';
 import SearchBar from "./SearchBar/SearchBar";
 import RestaurantsContainer from "./Restaurant/RestaurantsContainer";
 import RestaruntCard from './Restaurant/RestaruntCard';
-export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard };
+import Button from './Button/Button';
+import Filter from './Filter/Filter';
+export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter };

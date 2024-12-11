@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { fetchRestaurantList } from "../../utils/config";
-import { RestaruntCard } from "../index";
+import { Filter, RestaruntCard } from "../index";
 
 const RestaurantsContainer = () => {
     const [loading, setLoading] = useState(true);
     const [restaurantList, setRestaruntList] = useState([]);
+    const [filteredrestaurantList, setfilteredrestaurantList] = useState([]);
     const [error, setError] = useState(null);
+
+
 
 
     useEffect(() => {
@@ -14,7 +17,9 @@ const RestaurantsContainer = () => {
                 setLoading(true);
                 const data = await fetchRestaurantList();
                 setRestaruntList(data?.data?.data?.cards);
-                console.log(restaurantList);
+                setfilteredrestaurantList(data?.data?.data?.cards);
+                console.log(`rl`, restaurantList);
+                console.log('flr', filteredrestaurantList);
             } catch (err) {
                 console.log(`Error Fetching restarunt list: ${err.message}`);
                 setError("Failed to fetch restaurants. Please try again later.");
@@ -28,13 +33,25 @@ const RestaurantsContainer = () => {
     if (loading) return <p>Loading....</p>;
     if (error) return <p>{error}</p>;
 
-    return <section className="flex justify-center flex-wrap gap-6 my-10">
-        {restaurantList.map((res) => (
-            res?.card?.card?.info && <RestaruntCard
-                key={res?.card?.card?.info?.id}
-                info={res?.card?.card?.info}
-            />
-        ))}
+    const handleVegOnlyRestarunt = () => {
+        const updatedRestList = filteredrestaurantList.filter((res) => {
+            return res?.card?.card?.info?.veg;
+        });
+        setRestaruntList(updatedRestList);
+        console.log("ul", updatedRestList);
+    };
+
+
+    return <section >
+        <Filter handleClick={handleVegOnlyRestarunt} />
+        <div className="flex justify-center flex-wrap gap-6 my-10">
+            {restaurantList.map((res) => (
+                res?.card?.card?.info && <RestaruntCard
+                    key={res?.card?.card?.info?.id}
+                    info={res?.card?.card?.info}
+                />
+            ))}
+        </div>
     </section>;
 };
 

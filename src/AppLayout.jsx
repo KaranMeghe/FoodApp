@@ -6,7 +6,7 @@ function AppLayout() {
   return (
     <div className="font-lato">
       <Header />
-      <main >
+      <main className="mx-5" >
         <Outlet />
       </main>
       <Footer />
