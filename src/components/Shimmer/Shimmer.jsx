@@ -1,9 +1,9 @@
 import React from 'react';
 import { ShimmerPostList } from "react-shimmer-effects";
 
-const Shimmer = () => {
+const Shimmer = ({ col, row, gap }) => {
     return (
-        <ShimmerPostList postStyle="STYLE_FOUR" col={4} row={3} gap={30} />
+        <ShimmerPostList postStyle="STYLE_FOUR" col={col} row={row} gap={gap} />
     );
 };
 

@@ -1,13 +1,15 @@
+import { useContext } from "react";
+import RestaruntContext from "../../Context/RestaruntContext";
 import { Filter, RestaruntCard, Shimmer } from "../index";
-import useFetchRestaruntList from "../../hooks/useFetchRestaruntList";
 
 const RestaurantsContainer = () => {
-    const { loading, restaurantList, handleVegOnlyRestarunt, handleTopRatedClick, error } = useFetchRestaruntList();
+    const { loading, restaurantList, handleVegOnlyRestarunt, handleTopRatedClick, error } = useContext(RestaruntContext);
 
     if (error) return <p>{error} </p>;
 
     return <section className="my-10" >
-        {loading ? (<Shimmer />) : <> <Filter handleVegClick={handleVegOnlyRestarunt} handleTopRatedClick={handleTopRatedClick} />
+        {loading ? (<Shimmer col={4} row={3} gap={30} />) : <>
+            <Filter handleVegClick={handleVegOnlyRestarunt} handleTopRatedClick={handleTopRatedClick} />
             <div className="flex justify-center flex-wrap gap-6 my-10">
                 {restaurantList.map((res) => (
                     res?.card?.card?.info && <RestaruntCard
@@ -15,7 +17,8 @@ const RestaurantsContainer = () => {
                         info={res?.card?.card?.info}
                     />
                 ))}
-            </div></>}
+            </div>
+        </>}
     </section>;
 };
 

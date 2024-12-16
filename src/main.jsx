@@ -4,6 +4,7 @@ import AppLayout from './AppLayout.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { Contact, Cart } from './pages';
 import { Body } from './components';
+import { Provider } from './Context/RestaruntContext';
 
 const appRouter = createBrowserRouter([
   {
@@ -19,5 +20,7 @@ const appRouter = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={appRouter} />
+  <Provider>
+    <RouterProvider router={appRouter} />
+  </Provider>
 );

@@ -1,6 +1,8 @@
+
 import { SearchBar, RestaurantsContainer } from '../index';
 
 const Body = () => {
+
     return (
         <>
             <SearchBar />
