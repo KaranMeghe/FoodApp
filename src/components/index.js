@@ -7,4 +7,5 @@ import RestaurantsContainer from "./Restaurant/RestaurantsContainer";
 import RestaruntCard from './Restaurant/RestaruntCard';
 import Button from './Button/Button';
 import Filter from './Filter/Filter';
-export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter };
+import Shimmer from "./Shimmer/Shimmer";
+export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter, Shimmer };

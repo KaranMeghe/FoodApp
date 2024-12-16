@@ -3,7 +3,7 @@ import { FaRegStar, FaMapMarkerAlt } from "react-icons/fa";
 
 const RestaruntCard = ({ info }) => {
     const { name, cloudinaryImageId, avgRating, costForTwo, cuisines, locality, aggregatedDiscountInfoV3, sla, veg, subHeader } = info;
-    return <article className="w-80 flex flex-col rounded-lg overflow-hidden shadow-lg">
+    return <article className="w-72 flex flex-col rounded-lg overflow-hidden shadow-lg">
         {name && (
             <>
                 <div className="h-48 relative">

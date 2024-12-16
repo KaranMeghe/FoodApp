@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchRestaurantList } from "../../utils/config";
-import { Filter, RestaruntCard } from "../index";
+import { Filter, RestaruntCard, Shimmer } from "../index";
 
 const RestaurantsContainer = () => {
     const [loading, setLoading] = useState(true);
@@ -30,7 +30,6 @@ const RestaurantsContainer = () => {
         fetchList();
     }, []); // Empty dependency array ensures this runs only once on mount
 
-    if (loading) return <p>Loading....</p>;
     if (error) return <p>{error}</p>;
 
     const handleVegOnlyRestarunt = () => {
@@ -43,22 +42,22 @@ const RestaurantsContainer = () => {
 
     const handleTopRatedClick = () => {
         const updatedRestList = filteredrestaurantList.filter((res) => {
-            return res?.card?.card?.info?.avgRating > 4;
+            return res?.card?.card?.info?.avgRating > 4.3;
         });
         setRestaruntList(updatedRestList);
     };
 
 
-    return <section >
-        <Filter handleVegClick={handleVegOnlyRestarunt} handleTopRatedClick={handleTopRatedClick} />
-        <div className="flex justify-center flex-wrap gap-6 my-10">
-            {restaurantList.map((res) => (
-                res?.card?.card?.info && <RestaruntCard
-                    key={res?.card?.card?.info?.id}
-                    info={res?.card?.card?.info}
-                />
-            ))}
-        </div>
+    return <section className="my-10" >
+        {loading ? (<Shimmer />) : <> <Filter handleVegClick={handleVegOnlyRestarunt} handleTopRatedClick={handleTopRatedClick} />
+            <div className="flex justify-center flex-wrap gap-6 my-10">
+                {restaurantList.map((res) => (
+                    res?.card?.card?.info && <RestaruntCard
+                        key={res?.card?.card?.info?.id}
+                        info={res?.card?.card?.info}
+                    />
+                ))}
+            </div></>}
     </section>;
 };
 
