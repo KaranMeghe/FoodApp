@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import RestaruntContext from "../../Context/RestaruntContext";
-import { Input, RestaruntCard } from "../index";
+import { Input, Button } from "../index";
 
 const SearchBar = () => {
     const [searchInput, setSearchInput] = useState("");
@@ -17,7 +17,7 @@ const SearchBar = () => {
     };
 
     return (
-        <form className="flex justify-center" onSubmit={handleSubmit}>
+        <form className="flex gap-2 justify-center" onSubmit={handleSubmit}>
             <Input
                 value={searchInput}
                 type="text"
@@ -25,6 +25,7 @@ const SearchBar = () => {
                 className="border flex p-2"
                 handleChange={handleChange}
             />
+            <Button className="border-2 py-1 px-4">Search</Button>
         </form>
     );
 };

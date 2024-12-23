@@ -8,4 +8,5 @@ import RestaruntCard from './Restaurant/RestaruntCard';
 import Button from './Button/Button';
 import Filter from './Filter/Filter';
 import Shimmer from "./Shimmer/Shimmer";
-export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter, Shimmer };
+import Error from './Error/Error';
+export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter, Shimmer, Error };

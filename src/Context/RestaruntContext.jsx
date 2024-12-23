@@ -30,9 +30,6 @@ const Provider = ({ children }) => {
         const updatedRestList = filteredRestaurantList.filter((res) => {
             return res?.card?.card?.info?.veg;
         });
-        console.log("ul", updatedRestList);
-        console.log('hvor');
-
         return setRestaurantList(updatedRestList);
     };
 
@@ -40,7 +37,6 @@ const Provider = ({ children }) => {
         const updatedRestList = filteredRestaurantList.filter((res) => {
             return res?.card?.card?.info?.avgRating > 4.3;
         });
-        console.log('htrc');
         return setRestaurantList(updatedRestList);
     };
 
@@ -65,7 +61,6 @@ const Provider = ({ children }) => {
     return <RestaruntContext.Provider value={valueToShare}>
         {children}
     </RestaruntContext.Provider>;
-
 };
 
 export { Provider };

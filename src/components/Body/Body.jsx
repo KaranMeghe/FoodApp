@@ -1,12 +1,14 @@
-
+import { Provider } from '../../Context/RestaruntContext';
 import { SearchBar, RestaurantsContainer } from '../index';
 
 const Body = () => {
 
     return (
         <>
-            <SearchBar />
-            <RestaurantsContainer />
+            <Provider>
+                <SearchBar />
+                <RestaurantsContainer />
+            </Provider>
         </>
     );
 };

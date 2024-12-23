@@ -3,14 +3,14 @@ import './index.css';
 import AppLayout from './AppLayout.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { Contact, Cart } from './pages';
-import { Body } from './components';
-import { Provider } from './Context/RestaruntContext';
+import { Body, Error } from './components';
+
 
 const appRouter = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-
+    errorElement: <Error />,
     children: [
       { path: '/', element: <Body /> },
       { path: '/contact', element: <Contact /> },
@@ -20,7 +20,5 @@ const appRouter = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <Provider>
-    <RouterProvider router={appRouter} />
-  </Provider>
+  <RouterProvider router={appRouter} />
 );
