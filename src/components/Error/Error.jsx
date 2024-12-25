@@ -3,7 +3,7 @@ import { Link, useRouteError } from "react-router";
 
 const Error = () => {
     const error = useRouteError();
-    console.log(error);
+
     return <>
         <section className="flex flex-col justify-center items-center h-96 gap-4">
             <div className="text-center">

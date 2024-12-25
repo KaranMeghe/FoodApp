@@ -23,7 +23,7 @@ const SearchBar = () => {
                 type="text"
                 placeholder="Search"
                 className="border flex p-2"
-                handleChange={handleChange}
+                onChange={handleChange}
             />
             <Button className="border-2 py-1 px-4">Search</Button>
         </form>

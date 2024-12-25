@@ -3,7 +3,8 @@ import './index.css';
 import AppLayout from './AppLayout.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { Contact, Cart } from './pages';
-import { Body, Error } from './components';
+import { Body, Error, RestPage } from './components';
+import { menuLoader } from './components/Restaurant/RestPage';
 
 
 const appRouter = createBrowserRouter([
@@ -14,7 +15,8 @@ const appRouter = createBrowserRouter([
     children: [
       { path: '/', element: <Body /> },
       { path: '/contact', element: <Contact /> },
-      { path: '/cart', element: <Cart /> }
+      { path: '/cart', element: <Cart /> },
+      { path: `/restaurants/:resId`, element: <RestPage />, loader: menuLoader }
     ]
   }
 ]);

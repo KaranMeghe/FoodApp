@@ -18,7 +18,10 @@ export const fetchRestaurantList = async () => {
 
 export const fetchMenu = async (restId) => {
     try {
-        const response = await axios.get(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.098385&lng=79.068965&restaurantId=${restId}&catalog_qa=undefined&query=Chinese&submitAction=ENTER`);
+        const response = await axios.get(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.098385&lng=79.068965&restaurantId=${restId}`);
+
+        // https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.098385&lng=79.068965&restaurantId=790839&catalog_qa=undefined&query=Chinese&submitAction=ENTER
+
         return response;
     } catch (error) {
         console.log(`Error Fetching Menu List:`, error.message);

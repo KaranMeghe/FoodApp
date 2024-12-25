@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import RestaruntContext from "../../Context/RestaruntContext";
 import { Filter, RestaruntCard, Shimmer } from "../index";
+import { Link } from "react-router";
 
 const RestaurantsContainer = () => {
     const { loading, restaurantList, handleVegOnlyRestarunt, handleTopRatedClick, error } = useContext(RestaruntContext);
@@ -12,14 +13,14 @@ const RestaurantsContainer = () => {
             <Filter handleVegClick={handleVegOnlyRestarunt} handleTopRatedClick={handleTopRatedClick} />
             <div className="flex justify-center flex-wrap gap-6 my-10">
                 {restaurantList.map((res) => (
-                    res?.card?.card?.info && <RestaruntCard
-                        key={res?.card?.card?.info?.id}
-                        info={res?.card?.card?.info}
-                    />
+                    res?.card?.card?.info && <Link to={`/restaurants/${res?.card?.card?.info?.id}`} key={res?.card?.card?.info?.id}>
+                        <RestaruntCard info={res?.card?.card?.info} />
+                    </Link>
                 ))}
             </div>
-        </>}
-    </section>;
+        </>
+        }
+    </section >;
 };
 
 export default RestaurantsContainer;
