@@ -1,21 +1,41 @@
 import { useState } from 'react';
-import { Input } from "../index";
-const RestMenu = () => {
+import { MenuAccordion, MenuFilter } from "../index";
+import { IMG_CDN_URL } from '../../utils/config';
+import SearchInput from './SearchInput';
+
+const RestMenu = ({ resData }) => {
     const [searchInput, setSearchInput] = useState("");
 
-    const handleChange = (e) => {
-        return setSearchInput(e.target.value);
-    };
+    // Safely access cards and handle any missing data
+    const cards = resData?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) => card?.card?.card?.title) || [];
+    console.log("Cards:", cards);
 
+    const handleChange = (e) => setSearchInput(e.target.value);
 
-    return <section id="menu" className="flex flex-col w-9/12">
-        <div id="search" className="flex flex-col gap-4">
-            <span>Menu</span>
-            <form>
-                <Input type="text" value={searchInput} onChange={handleChange} placeholder="Search for dishes" className="border border-1 p-2 rounded-md text-center w-full" />
-            </form>
-        </div>
-    </section>;
+    // Function to safely access categories and itemCards 
+    const getCategoryItemCards = (category) => category?.card?.card?.categories || [];
+    const getItemCards = (card) => card?.card?.card?.itemCards || [];
+
+    return (
+        <section id="menu" className="flex flex-col w-9/12">
+            <div id="search" className="flex flex-col gap-4">
+                <SearchInput value={searchInput} onChange={handleChange} />
+                <MenuFilter />
+                {cards.map((card) => {
+                    const categories = getCategoryItemCards(card);
+                    const itemCards = getItemCards(card);
+                    return (
+                        <MenuAccordion
+                            key={card.card.card.title}
+                            title={card.card.card.title}
+                            itemCards={itemCards}
+                            categories={categories}
+                        />
+                    );
+                })}
+            </div>
+        </section>
+    );
 };
 
 export default RestMenu;

@@ -31,7 +31,7 @@ const RestPage = () => {
             <RestInfo resData={resData} />
             {resData[3]?.card?.card?.gridElements?.infoWithStyle?.offers ? <h3 className="text-2xl font-bold my-4">Deals for you</h3> : null}
             <RestOffer resData={resData[3]} />
-            <RestMenu />
+            <RestMenu resData={resData[4]} />
         </section>
     );
 };
