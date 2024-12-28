@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router";
+import { MenuProvider } from "../../Context/MenuContex";
 import { fetchMenu } from "../../utils/config";
 import { RestInfo, RestMenu, RestOffer } from '../index';
 
@@ -31,7 +32,10 @@ const RestPage = () => {
             <RestInfo resData={resData} />
             {resData[3]?.card?.card?.gridElements?.infoWithStyle?.offers ? <h3 className="text-2xl font-bold my-4">Deals for you</h3> : null}
             <RestOffer resData={resData[3]} />
-            <RestMenu resData={resData[4]} />
+            <MenuProvider>
+                <RestMenu resData={resData[4]} />
+            </MenuProvider>
+
         </section>
     );
 };

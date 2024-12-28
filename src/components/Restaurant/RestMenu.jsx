@@ -1,29 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MenuAccordion, MenuFilter } from "../index";
 import { IMG_CDN_URL } from '../../utils/config';
 import SearchInput from './SearchInput';
+import { useMenuContext } from '../../Context/MenuContex';
 
 const RestMenu = ({ resData }) => {
     const [searchInput, setSearchInput] = useState("");
+    const { menu, setData } = useMenuContext();
 
     // Safely access cards and handle any missing data
     const cards = resData?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) => card?.card?.card?.title) || [];
-    console.log("Cards:", cards);
+
+    useEffect(() => {
+        setData(cards);
+    }, []);
+
+    console.log("RestMenuData:-", resData);
+    console.log("Menu", menu);
 
     const handleChange = (e) => setSearchInput(e.target.value);
 
-    // Function to safely access categories and itemCards 
-    const getCategoryItemCards = (category) => category?.card?.card?.categories || [];
-    const getItemCards = (card) => card?.card?.card?.itemCards || [];
 
     return (
         <section id="menu" className="flex flex-col w-9/12">
             <div id="search" className="flex flex-col gap-4">
                 <SearchInput value={searchInput} onChange={handleChange} />
                 <MenuFilter />
-                {cards.map((card) => {
-                    const categories = getCategoryItemCards(card);
-                    const itemCards = getItemCards(card);
+                {menu.map((card) => {
+                    const categories = card?.card?.card?.categories || [];
+                    const itemCards = card?.card?.card?.itemCards || [];
                     return (
                         <MenuAccordion
                             key={card.card.card.title}
