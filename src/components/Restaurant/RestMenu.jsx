@@ -6,7 +6,7 @@ import { useMenuContext } from '../../Context/MenuContex';
 
 const RestMenu = ({ resData }) => {
     const [searchInput, setSearchInput] = useState("");
-    const { menu, setData } = useMenuContext();
+    const { menu, setData, filterVeg, filterNonVeg, refreshAllMenu } = useMenuContext();
 
     // Safely access cards and handle any missing data
     const cards = resData?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) => card?.card?.card?.title) || [];
@@ -25,10 +25,11 @@ const RestMenu = ({ resData }) => {
         <section id="menu" className="flex flex-col w-9/12">
             <div id="search" className="flex flex-col gap-4">
                 <SearchInput value={searchInput} onChange={handleChange} />
-                <MenuFilter />
+                <MenuFilter handleVegClick={filterVeg} handleNonVegClick={filterNonVeg} handleAllClick={refreshAllMenu} />
                 {menu.map((card) => {
                     const categories = card?.card?.card?.categories || [];
                     const itemCards = card?.card?.card?.itemCards || [];
+                    const topPick = card?.card?.card?.carousel || [];
                     return (
                         <MenuAccordion
                             key={card.card.card.title}
