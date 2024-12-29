@@ -1,30 +1,85 @@
-import axios from 'axios';
 
-const BASE_URL = "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.098385&lng=79.068965&collection=80463&tags=&sortBy=&filters=&type=rcv2&offset=0&page_type=null";
 
-export const IMG_CDN_URL = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/`;
+// filter veg
+export const filterVeg = (filteredMenu, setMenu) => {
+    const vegMenu = filteredMenu.map((menu) => {
+        const categories = menu?.card?.card?.categories?.map((category) => {
+            const filterCategories = category?.itemCards?.filter((item) => {
+                return item?.card?.info?.isVeg;
+            });
+            return { ...category, itemCards: filterCategories || [] };
+        });
+        // console.log("veg", categories);
+        const itemCards = menu?.card?.card?.itemCards?.filter((item) => item?.card?.info?.isVeg) || [];
 
-export const REST_MENU_URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.098385&lng=79.068965&restaurantId=790839&catalog_qa=undefined&query=Chinese&submitAction=ENTER`;
 
-export const fetchRestaurantList = async () => {
-    try {
-        const response = await axios.get(BASE_URL);
-        return response;
-    } catch (error) {
-        console.log(`Error Fetching Restarunt List:`, error.message);
-        throw error;
-    }
+        return {
+            ...menu,
+            card: {
+                ...menu.card,
+                card: {
+                    ...menu.card.card,
+                    itemCards: itemCards,
+                    categories: categories
+                }
+            }
+        };
+
+    });
+
+    setMenu(vegMenu);
+
 };
 
-export const fetchMenu = async (restId) => {
-    try {
-        const response = await axios.get(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.098385&lng=79.068965&restaurantId=${restId}`);
+// filter Non veg
+export const filterNonVeg = (filteredMenu, setMenu) => {
+    const nonVegMenu = filteredMenu.map((menu) => {
+        const categories = menu?.card?.card?.categories?.map((category) => {
+            const filteredCategories = category?.itemCards?.filter((item) => !item?.card?.info.isVeg);
+            return { ...category, itemCards: filteredCategories || [] };
+        });
+        console.log("NVC", categories);
 
-        // https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.098385&lng=79.068965&restaurantId=790839&catalog_qa=undefined&query=Chinese&submitAction=ENTER
+        const itemCards = menu?.card?.card?.itemCards?.filter((item) => !item?.card?.info?.isVeg);
 
-        return response;
-    } catch (error) {
-        console.log(`Error Fetching Menu List:`, error.message);
-        throw error;
-    }
+        return {
+            ...menu,
+            card: {
+                ...menu.card,
+                card: {
+                    ...menu.card.card,
+                    itemCards: itemCards,
+                    categories: categories
+                }
+            }
+        };
+    });
+    console.log("Nonveg", nonVegMenu);
+    setMenu(nonVegMenu);
+};
+
+//   Referesh
+export const refreshAllMenu = (filteredMenu, setMenu) => {
+    const allMenu = filteredMenu.map((menu) => {
+        const categories = menu?.card?.card?.categories?.map((category) => {
+            const resetCategories = category.itemCards;
+            return { ...category, itemCards: resetCategories };
+        });
+
+        const itemCards = menu?.card?.card?.itemCards;
+
+        return {
+            ...menu,
+            card: {
+                ...menu.card,
+                card: {
+                    ...menu.card.card,
+                    itemCards: itemCards,
+                    categories: categories
+                }
+            }
+        };
+    });
+
+    setMenu(allMenu);
 };

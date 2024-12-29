@@ -1,4 +1,4 @@
-import { IMG_CDN_URL } from "../../utils/config";
+import { IMG_CDN_URL } from "../../utils/services/config";
 
 // Reusable component for rendering itemCards
 const RenderItems = ({ items }) => {

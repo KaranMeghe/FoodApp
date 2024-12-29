@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-import { fetchRestaurantList } from '../utils/config';
+import { fetchRestaurantList } from '../utils/services/config';
 
 const RestaruntContext = createContext();
 

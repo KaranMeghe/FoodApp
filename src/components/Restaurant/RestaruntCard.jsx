@@ -1,4 +1,4 @@
-import { IMG_CDN_URL } from "../../utils/config";
+import { IMG_CDN_URL } from "../../utils/services/config";
 import { FaRegStar, FaMapMarkerAlt } from "react-icons/fa";
 
 const RestaruntCard = ({ info }) => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MenuAccordion, MenuFilter } from "../index";
-import { IMG_CDN_URL } from '../../utils/config';
+import { IMG_CDN_URL } from '../../utils/services/config';
 import SearchInput from './SearchInput';
 import { useMenuContext } from '../../Context/MenuContex';
 

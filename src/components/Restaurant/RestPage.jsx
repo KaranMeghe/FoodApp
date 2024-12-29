@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import { MenuProvider } from "../../Context/MenuContex";
-import { fetchMenu } from "../../utils/config";
+import { fetchMenu } from "../../utils/services/config";
 import { RestInfo, RestMenu, RestOffer } from '../index';
 
 
