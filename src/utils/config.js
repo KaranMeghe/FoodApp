@@ -1,5 +1,4 @@
 
-
 // filter veg
 export const filterVeg = (filteredMenu, setMenu) => {
     const vegMenu = filteredMenu.map((menu) => {
