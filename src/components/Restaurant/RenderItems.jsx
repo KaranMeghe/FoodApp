@@ -5,18 +5,38 @@ import { Button, Modal } from '../index';
 const RenderItems = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const variations = items.filter((item) => item?.card?.info?.variantsV2?.variantGroups);
+  // console.log("Items:", items);
+  // const variations = items.filter((item) => item?.card?.info?.variantsV2?.variantGroups);
+  // console.log("Filter variations:", variations);
 
-  console.log("ver", variations);
+  // const variantsV1 = variations.map((item) => item?.card?.info?.variantsV2?.variantGroups);
+  // // const variantsV2 = variantsV1.map((ver) => ver.map(ver));
+  // console.log('v1', variantsV1);
 
-  const variants = variations.map((variation) => variation?.card?.info?.variantsV2?.variantGroups.map((va) => va.variations));
-  console.log('var', variants);
+  // // Accessing variations using map
+  // const allVariations = variantsV1.map(group => {
+  //   return group.map(item => item.variations); // Extract the variations array from each object
+  // });
 
-  const modalData = variants.map((item) => item);
-  console.log("md", modalData);
+
+  // // Flattening the array to get all variations in one array (optional)
+  // const flattenedVariations = allVariations.flat(2);
+
+  // console.log("All Variations:", allVariations); // Nested arrays of variations
+  // console.log("Flattened Variations:", flattenedVariations); // Single array of all variations
+
+  const variations = items
+    .filter((item) => item?.card?.info?.variantsV2?.variantGroups)
+    .flatMap((item) => item.card.info.variantsV2.variantGroups); // Flatten while filtering
+
+  // Extracting all variations and flattening
+  const allVariations = variations.map((group) => group.variations);
+  const flattenedVariations = allVariations.flat(); // Flatten to a single array
+
+  console.log("All Variations:", allVariations); // Nested arrays of variations
+  console.log("Flattened Variations:", flattenedVariations); // Single array of all variations
 
 
-  console.log("Items:", items);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
