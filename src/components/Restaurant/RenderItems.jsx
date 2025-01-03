@@ -5,25 +5,6 @@ import { Button, Modal } from '../index';
 const RenderItems = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // console.log("Items:", items);
-  // const variations = items.filter((item) => item?.card?.info?.variantsV2?.variantGroups);
-  // console.log("Filter variations:", variations);
-
-  // const variantsV1 = variations.map((item) => item?.card?.info?.variantsV2?.variantGroups);
-  // // const variantsV2 = variantsV1.map((ver) => ver.map(ver));
-  // console.log('v1', variantsV1);
-
-  // // Accessing variations using map
-  // const allVariations = variantsV1.map(group => {
-  //   return group.map(item => item.variations); // Extract the variations array from each object
-  // });
-
-
-  // // Flattening the array to get all variations in one array (optional)
-  // const flattenedVariations = allVariations.flat(2);
-
-  // console.log("All Variations:", allVariations); // Nested arrays of variations
-  // console.log("Flattened Variations:", flattenedVariations); // Single array of all variations
 
   const variations = items
     .filter((item) => item?.card?.info?.variantsV2?.variantGroups)
@@ -33,7 +14,7 @@ const RenderItems = ({ items }) => {
   const allVariations = variations.map((group) => group.variations);
   const flattenedVariations = allVariations.flat(); // Flatten to a single array
 
-  console.log("All Variations:", allVariations); // Nested arrays of variations
+  console.log("All Variations:", allVariations[0]); // Nested arrays of variations
   console.log("Flattened Variations:", flattenedVariations); // Single array of all variations
 
 
@@ -82,7 +63,13 @@ const RenderItems = ({ items }) => {
         })}
         <div className='absolute left-44'>
           {isOpen ? <Modal setIsOpen={setIsOpen} className="p-40 bg-gray-200 rounded-lg">
+            <div className='flex flex-col gap-4'>
+              <span>Quantity</span>
 
+              <div className='flex flex-col'>
+                {allVariations[0].map((item) => <span>{item.name}</span>)}
+              </div>
+            </div>
           </Modal> : null}
         </div>
       </div >
