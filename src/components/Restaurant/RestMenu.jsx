@@ -3,9 +3,10 @@ import { MenuAccordion, MenuFilter, SearchItems } from "../index";
 import { IMG_CDN_URL } from '../../utils/services/config';
 import SearchInput from './SearchInput';
 import { useMenuContext } from '../../Context/MenuContex';
+// import { handleSearchMenu as handleSearchMenuUtils } from '../../utils/config';
 
 const RestMenu = ({ resData }) => {
-    const { menu, setMenu, filteredMenu, setData, filterVeg, filterNonVeg, refreshAllMenu, searchInput, setSearchInput } = useMenuContext();
+    const { menu, setMenu, filteredMenu, setData, filterVeg, filterNonVeg, refreshAllMenu, searchInput, setSearchInput, handleSearchMenu } = useMenuContext();
 
     // Safely access cards and handle any missing data
     const cards = resData?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) => card?.card?.card?.title) || [];
@@ -14,47 +15,47 @@ const RestMenu = ({ resData }) => {
         setData(cards);
     }, []);
 
-    console.log("RestMenuData:-", resData);
-    console.log("Menu", menu);
+    useEffect(() => {
+        handleSearchMenu(filteredMenu, setMenu, searchInput);
+    }, [searchInput, filteredMenu]);
 
-    const handleSearchMenu = (searchInput) => {
-        const lowerCasedInput = typeof searchInput === "string" ? searchInput.toLowerCase() : "";
+    // const handleSearchMenu = (searchInput) => {
+    //     const lowerCasedInput = typeof searchInput === "string" ? searchInput.toLowerCase() : "";
 
-        const searchMenu = filteredMenu.map((menu) => {
-            const categories = menu?.card?.card?.categories?.map((category) => {
+    //     const searchMenu = filteredMenu.map((menu) => {
+    //         const categories = menu?.card?.card?.categories?.map((category) => {
 
-                const filterCategories = category?.itemCards?.filter((item) => {
-                    const itemName = item?.card?.info?.name?.toLowerCase() || ""; // Ensure name is a string
-                    return itemName.includes(lowerCasedInput);
-                });
-                return { ...category, itemCards: filterCategories || [] };
-            });
-            // console.log("veg", categories);
-            const itemCards = menu?.card?.card?.itemCards?.filter((item) => {
-                const itemName = item?.card?.info?.name?.toLowerCase() || ""; // Ensure name is a string
-                return itemName.includes(lowerCasedInput);
-            });
+    //             const filterCategories = category?.itemCards?.filter((item) => {
+    //                 const itemName = item?.card?.info?.name?.toLowerCase() || ""; // Ensure name is a string
+    //                 return itemName.includes(lowerCasedInput);
+    //             });
+    //             return { ...category, itemCards: filterCategories || [] };
+    //         });
+    //         // console.log("veg", categories);
+    //         const itemCards = menu?.card?.card?.itemCards?.filter((item) => {
+    //             const itemName = item?.card?.info?.name?.toLowerCase() || ""; // Ensure name is a string
+    //             return itemName.includes(lowerCasedInput);
+    //         });
 
-            return {
-                ...menu,
-                card: {
-                    ...menu.card,
-                    card: {
-                        ...menu.card.card,
-                        itemCards: itemCards,
-                        categories: categories
-                    }
-                }
-            };
-        });
-        return setMenu(searchMenu);
+    //         return {
+    //             ...menu,
+    //             card: {
+    //                 ...menu.card,
+    //                 card: {
+    //                     ...menu.card.card,
+    //                     itemCards: itemCards,
+    //                     categories: categories
+    //                 }
+    //             }
+    //         };
+    //     });
+    //     return setMenu(searchMenu);
 
-    };
+    // };
 
     const handleChange = (e) => {
         setSearchInput(e.target.value);
         console.log(searchInput);
-        handleSearchMenu(searchInput);
     };
 
     const handleSearchSumbit = (e) => {
@@ -73,8 +74,6 @@ const RestMenu = ({ resData }) => {
                     const categories = card?.card?.card?.categories || [];
                     const itemCards = card?.card?.card?.itemCards || [];
                     const topPick = card?.card?.card?.carousel || [];
-                    console.log("Categpries", categories);
-                    console.log("Item-Cards", itemCards);
                     return (
                         <MenuAccordion
                             key={card.card.card.title}

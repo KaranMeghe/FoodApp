@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import SearchInput from "../components/Restaurant/SearchInput";
-import { filterNonVeg as filterNonVegUtil, filterVeg as filterVegUtil, refreshAllMenu as refreshAllMenuUtil } from "../utils/config";
+import { filterNonVeg as filterNonVegUtil, filterVeg as filterVegUtil, refreshAllMenu as refreshAllMenuUtil, handleSearchMenu as handleSearchMenuUtil } from "../utils/config";
 
 
 const MenuContext = createContext();
@@ -26,11 +25,12 @@ export const MenuProvider = ({ children, resData }) => {
     const filterVeg = () => filterVegUtil(filteredMenu, setMenu);
     const filterNonVeg = () => filterNonVegUtil(filteredMenu, setMenu);
     const refreshAllMenu = () => refreshAllMenuUtil(filteredMenu, setMenu);
+    const handleSearchMenu = () => handleSearchMenuUtil(filteredMenu, setMenu, searchInput);
 
 
     return (
         <MenuContext.Provider value={{
-            menu, setMenu, filteredMenu, setData, filterVeg, filterNonVeg, refreshAllMenu, searchInput, setSearchInput,
+            menu, setMenu, filteredMenu, setData, filterVeg, filterNonVeg, refreshAllMenu, searchInput, setSearchInput, handleSearchMenu
         }} >
             {children}
         </MenuContext.Provider>

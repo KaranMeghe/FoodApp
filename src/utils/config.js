@@ -82,3 +82,40 @@ export const refreshAllMenu = (filteredMenu, setMenu) => {
 
     setMenu(allMenu);
 };
+
+
+// Search 
+export const handleSearchMenu = (filteredMenu, setMenu, searchInput) => {
+    const lowerCasedInput = typeof searchInput === "string" ? searchInput.toLowerCase() : "";
+
+    const searchMenu = Array.isArray(filteredMenu)
+        ? filteredMenu.map((menu) => {
+            const categories = menu?.card?.card?.categories?.map((category) => {
+                const filterCategories = category?.itemCards?.filter((item) => {
+                    const itemName = item?.card?.info?.name?.toLowerCase() || "";
+                    return itemName.includes(lowerCasedInput);
+                });
+                return { ...category, itemCards: filterCategories || [] };
+            });
+
+            const itemCards = menu?.card?.card?.itemCards?.filter((item) => {
+                const itemName = item?.card?.info?.name?.toLowerCase() || "";
+                return itemName.includes(lowerCasedInput);
+            });
+
+            return {
+                ...menu,
+                card: {
+                    ...menu.card,
+                    card: {
+                        ...menu.card.card,
+                        itemCards: itemCards,
+                        categories: categories,
+                    },
+                },
+            };
+        })
+        : [];
+
+    setMenu(searchMenu);
+};
