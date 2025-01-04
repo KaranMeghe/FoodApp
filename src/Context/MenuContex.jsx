@@ -13,14 +13,10 @@ export const MenuProvider = ({ children, resData }) => {
     const [filteredMenu, setFilteredMenu] = useState([]);
     const [searchInput, setSearchInput] = useState("");
 
-    console.log("Fm", filteredMenu);
-
     const setData = (resData) => {
         setMenu(resData || []);
         setFilteredMenu(resData || []);
     };
-
-
 
     const filterVeg = () => filterVegUtil(filteredMenu, setMenu);
     const filterNonVeg = () => filterNonVegUtil(filteredMenu, setMenu);

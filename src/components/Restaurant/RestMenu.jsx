@@ -62,9 +62,6 @@ const RestMenu = ({ resData }) => {
         e.preventDefault();
     };
 
-
-
-
     return (
         <section id="menu" className="flex flex-col w-9/12">
             <div id="search" className="flex flex-col gap-4">
@@ -80,6 +77,7 @@ const RestMenu = ({ resData }) => {
                             title={card.card.card.title}
                             itemCards={itemCards}
                             categories={categories}
+
                         />
                     );
                 })}
