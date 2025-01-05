@@ -1,66 +1,14 @@
-import { useEffect } from 'react';
+
 import { MenuAccordion, MenuFilter } from "../index";
 import { IMG_CDN_URL } from '../../utils/services/config';
 import SearchInput from './SearchInput';
 import { useMenuContext } from '../../Context/MenuContex';
-// import { handleSearchMenu as handleSearchMenuUtils } from '../../utils/config';
+import useRestMenu from '../../hooks/useRestMenu';
+
 
 const RestMenu = ({ resData }) => {
-    const { menu, setMenu, filteredMenu, setData, filterVeg, filterNonVeg, refreshAllMenu, searchInput, setSearchInput, handleSearchMenu } = useMenuContext();
-
-    // Safely access cards and handle any missing data
-    const cards = resData?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) => card?.card?.card?.title) || [];
-
-    useEffect(() => {
-        setData(cards);
-    }, []);
-
-    useEffect(() => {
-        handleSearchMenu(filteredMenu, setMenu, searchInput);
-    }, [searchInput, filteredMenu]);
-
-    // const handleSearchMenu = (searchInput) => {
-    //     const lowerCasedInput = typeof searchInput === "string" ? searchInput.toLowerCase() : "";
-
-    //     const searchMenu = filteredMenu.map((menu) => {
-    //         const categories = menu?.card?.card?.categories?.map((category) => {
-
-    //             const filterCategories = category?.itemCards?.filter((item) => {
-    //                 const itemName = item?.card?.info?.name?.toLowerCase() || ""; // Ensure name is a string
-    //                 return itemName.includes(lowerCasedInput);
-    //             });
-    //             return { ...category, itemCards: filterCategories || [] };
-    //         });
-    //         // console.log("veg", categories);
-    //         const itemCards = menu?.card?.card?.itemCards?.filter((item) => {
-    //             const itemName = item?.card?.info?.name?.toLowerCase() || ""; // Ensure name is a string
-    //             return itemName.includes(lowerCasedInput);
-    //         });
-
-    //         return {
-    //             ...menu,
-    //             card: {
-    //                 ...menu.card,
-    //                 card: {
-    //                     ...menu.card.card,
-    //                     itemCards: itemCards,
-    //                     categories: categories
-    //                 }
-    //             }
-    //         };
-    //     });
-    //     return setMenu(searchMenu);
-
-    // };
-
-    const handleChange = (e) => {
-        setSearchInput(e.target.value);
-        console.log(searchInput);
-    };
-
-    const handleSearchSumbit = (e) => {
-        e.preventDefault();
-    };
+    const { menu, filterVeg, filterNonVeg, refreshAllMenu, searchInput } = useMenuContext();
+    const { handleChange, handleSearchSumbit } = useRestMenu(resData);
 
     return (
         <section id="menu" className="flex flex-col w-9/12">

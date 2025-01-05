@@ -1,28 +1,8 @@
-import { useState } from 'react';
+
 import { IMG_CDN_URL } from "../../utils/services/config";
 import { Button } from '../index';
 // Reusable component for rendering itemCards
 const RenderItems = ({ items }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-
-  const variations = items
-    .filter((item) => item?.card?.info?.variantsV2?.variantGroups)
-    .flatMap((item) => item.card.info.variantsV2.variantGroups); // Flatten while filtering
-
-  // Extracting all variations and flattening
-  const allVariations = variations.map((group) => group.variations);
-  const flattenedVariations = allVariations.flat(); // Flatten to a single array
-
-  console.log("All Variations:", allVariations[0]); // Nested arrays of variations
-  console.log("Flattened Variations:", flattenedVariations); // Single array of all variations
-
-
-
-  const handleModal = () => {
-    setIsOpen(!isOpen);
-    console.log("clicked");
-  };
 
   // Display Final Price
   const calculateFinalDisplayPrice = ({ price, finalPrice, defaultPrice }) => {
@@ -48,7 +28,7 @@ const RenderItems = ({ items }) => {
                 <span>₹ {displayPrice}</span>
                 <span>{ratings.aggregatedRating.rating && `⭐️ ${ratings.aggregatedRating.rating} (${ratings.aggregatedRating.ratingCountV2})`}</span>
                 <span className="text-gray-500 text-base">{description}</span>
-                <Button className="border bg-green-500 text-white bold w-36" handleClick={handleModal}>Add +</Button>
+                <Button className="border bg-green-500 text-white bold w-36" >Add +</Button>
               </div>
 
               <div className="w-36 h-36">
