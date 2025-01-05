@@ -19,11 +19,6 @@ const RestaruntCard = ({ info }) => {
                         {aggregatedDiscountInfoV3?.header &&
                             `${aggregatedDiscountInfoV3?.header} ${aggregatedDiscountInfoV3?.subHeader}`}
                     </p>
-
-
-
-
-
                 </div>
 
                 <div className="flex flex-col justify-around p-5">

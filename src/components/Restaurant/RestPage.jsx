@@ -4,10 +4,8 @@ import { fetchMenu } from "../../utils/services/config";
 import { RestInfo, RestMenu, RestOffer } from '../index';
 
 
-
 export const menuLoader = async ({ params }) => {
     const { resId } = params;
-    console.log(resId);
     const menu = await fetchMenu(resId); // Pass the `resId` to fetch the menu
     return menu;
 };

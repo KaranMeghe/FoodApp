@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { MenuAccordion, MenuFilter, SearchItems } from "../index";
+import { MenuAccordion, MenuFilter } from "../index";
 import { IMG_CDN_URL } from '../../utils/services/config';
 import SearchInput from './SearchInput';
 import { useMenuContext } from '../../Context/MenuContex';
@@ -71,6 +71,7 @@ const RestMenu = ({ resData }) => {
                     const categories = card?.card?.card?.categories || [];
                     const itemCards = card?.card?.card?.itemCards || [];
                     const topPick = card?.card?.card?.carousel || [];
+                    console.log("Top Pick", topPick);
                     return (
                         <MenuAccordion
                             key={card.card.card.title}

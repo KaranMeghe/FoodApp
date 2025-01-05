@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IMG_CDN_URL } from "../../utils/services/config";
-import { Button, Modal } from '../index';
+import { Button } from '../index';
 // Reusable component for rendering itemCards
 const RenderItems = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,17 +61,6 @@ const RenderItems = ({ items }) => {
             </div>
           );
         })}
-        <div className='absolute left-44'>
-          {isOpen ? <Modal setIsOpen={setIsOpen} className="p-40 bg-gray-200 rounded-lg">
-            <div className='flex flex-col gap-4'>
-              <span>Quantity</span>
-
-              <div className='flex flex-col'>
-                {allVariations[0].map((item) => <span>{item.name}</span>)}
-              </div>
-            </div>
-          </Modal> : null}
-        </div>
       </div >
     </>
   );
