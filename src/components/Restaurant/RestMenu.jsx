@@ -26,7 +26,6 @@ const RestMenu = ({ resData }) => {
                             title={card.card.card.title}
                             itemCards={itemCards}
                             categories={categories}
-
                         />
                     );
                 })}

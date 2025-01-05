@@ -18,5 +18,6 @@ import Accordion from './Accordion/Accordion';
 import RenderItems from "./Restaurant/RenderItems";
 import CategoryAccordion from "./Restaurant/CategoryAccordion";
 import MenuAccordion from "./Restaurant/MenuAccordion";
+import NetworkMonitor from "./Network/NetworkMonitor";
 
-export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter, Shimmer, Error, RestPage, RestInfo, RestOffer, RestMenu, MenuFilter, Accordion, RenderItems, CategoryAccordion, MenuAccordion, };
+export { Header, Footer, Body, Input, SearchBar, RestaurantsContainer, RestaruntCard, Button, Filter, Shimmer, Error, RestPage, RestInfo, RestOffer, RestMenu, MenuFilter, Accordion, RenderItems, CategoryAccordion, MenuAccordion, NetworkMonitor };
