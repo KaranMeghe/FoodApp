@@ -19,7 +19,7 @@ const RestMenu = ({ resData }) => {
                     const categories = card?.card?.card?.categories || [];
                     const itemCards = card?.card?.card?.itemCards || [];
                     const topPick = card?.card?.card?.carousel || [];
-                    console.log("Top Pick", topPick);
+
                     return (
                         <MenuAccordion
                             key={card.card.card.title}

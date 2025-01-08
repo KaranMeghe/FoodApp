@@ -20,10 +20,9 @@ export const menuLoader = async ({ params }) => {
 
 const RestPage = () => {
     const response = useLoaderData(); // we use this custom hook to get data into component (react-router-dom)
-    console.log('menu:-', response);
 
     const resData = response.data.data.cards;
-    console.log("data", resData);
+
 
     return (
         <section className="flex flex-col w-[80%] mx-auto">
