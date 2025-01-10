@@ -1,8 +1,12 @@
 
 import { IMG_CDN_URL } from "../../utils/services/config";
 import { Button } from '../index';
+import useCartActions from "../../hooks/useCartActions";
+
+
 // Reusable component for rendering itemCards
 const RenderItems = ({ items }) => {
+  const { handleAddItem } = useCartActions();
 
   // Display Final Price
   const calculateFinalDisplayPrice = ({ price, finalPrice, defaultPrice }) => {
@@ -28,7 +32,7 @@ const RenderItems = ({ items }) => {
                 <span>₹ {displayPrice}</span>
                 <span>{ratings.aggregatedRating.rating && `⭐️ ${ratings.aggregatedRating.rating} (${ratings.aggregatedRating.ratingCountV2})`}</span>
                 <span className="text-gray-500 text-base">{description}</span>
-                <Button className="border bg-green-500 text-white bold w-36" >Add +</Button>
+                <Button handleClick={() => handleAddItem(item)} className="border bg-green-500 text-white bold w-36" >Add +</Button>
               </div>
 
               <div className="w-36 h-36">
