@@ -11,7 +11,7 @@ function AppLayout() {
 
   return (
     <Provider store={appStore}>
-      <div className="font-lato">
+      <div className="font-lato max-h-screen">
         {isOnline ? <>
           <Header />
           <main className="mx-5" >

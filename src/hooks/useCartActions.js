@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addItem } from "../Redux/slices/cartSlice";
+import { addItem, clearCart, removeItem } from "../Redux/slices/cartSlice";
 
 const useCartActions = (items) => {
     const dispatch = useDispatch();
@@ -9,7 +9,16 @@ const useCartActions = (items) => {
         console.log("handle Add Item", item);
     };
 
-    return { handleAddItem };
+    const handleClearItem = () => {
+        dispatch(clearCart());
+    };
+
+    const handleRemoveItem = (item) => {
+        dispatch(removeItem(item.card.info.id));
+        console.log("Removed:", item);
+    };
+
+    return { handleAddItem, handleClearItem, handleRemoveItem };
 };
 
 export default useCartActions;
